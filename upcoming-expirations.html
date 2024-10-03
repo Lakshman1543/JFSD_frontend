@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Upcoming Expirations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-dark: #111827;
+      --text-light: #f3f4f6;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      min-height: 100vh;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4f46e5, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary);
+    }
+
+    /* Container Styles */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .container h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    /* Expiration Card Styles */
+    .expiration-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    .expiration-card img {
+      width: 80px;
+      height: 80px;
+      margin-right: 1.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .expiration-details h3 {
+      font-size: 1.25rem;
+      color: var(--text-light);
+    }
+
+    .expiration-details p {
+      color: #d1d5db;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .actions button {
+      padding: 0.5rem 1rem;
+      background-color: var(--primary);
+      color: var(--text-light);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .actions button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+
+      .expiration-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .actions {
+        justify-content: flex-start;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-content">
+      <h2 class="logo">CertiTrack</h2>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="recent-certifications.html">Recent Certifications</a></li>
+        <li><a href="upcoming-expirations.html">Upcoming Expirations</a></li>
+        <li><a href="notifications.html">Notifications</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Upcoming Expirations</h1>
+    
+    <!-- Example Expiration Card -->
+    <div class="expiration-card">
+      <!-- <img src="https://via.placeholder.com/100" alt="Expiration Image"> -->
+      <div class="expiration-details">
+        <h3>Java Programming Certification</h3>
+        <p>Issued by: XYZ Institute</p>
+        <p>Expiration Date: April 15, 2024</p>
+      </div>
+      <div class="actions">
+        <button>Renew</button>
+      </div>
+    </div>
+
+    <!-- Add more expiration cards as needed -->
+    
+  </div>
+
+</body>
+</html>

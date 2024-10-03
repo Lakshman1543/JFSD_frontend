@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>View Certifications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-dark: #111827;
+      --text-light: #f3f4f6;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      min-height: 100vh;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4f46e5, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary);
+    }
+
+    /* Container Styles */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .container h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      white-space: nowrap;
+    }
+
+    th, td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background: rgba(79, 70, 229, 0.1);
+      font-weight: 500;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Link Styles */
+    .view-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--text-light);
+      text-decoration: none;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .view-link:hover {
+      background: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Date Status */
+    .date-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .valid {
+      color: #10b981;
+    }
+
+    .expiring-soon {
+      color: #f59e0b;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Search and Filter Section */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #a5b4fc;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      
+      nav {
+        padding: 1rem;
+      }
+
+      th, td {
+        padding: 0.75rem 1rem;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <h2 class="logo">CertiTrack</h2>
+      <ul>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>
+      <i class="fas fa-certificate"></i>
+      View Certifications
+    </h2>
+
+    <div class="controls">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search certifications...">
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Certification Name</th>
+            <th>Provider</th>
+            <th>Issue Date</th>
+            <th>Expiry Date</th>
+            <th>Status</th>
+            <th>Certificate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Java Developer Certification</td>
+            <td>Oracle</td>
+            <td>Jan 15, 2024</td>
+            <td>Jan 15, 2025</td>
+            <td>
+              <span class="date-status valid">
+                <i class="fas fa-check-circle"></i>
+                Valid
+              </span>
+            </td>
+            <td>
+              <a href="certificate1.pdf" target="_blank" class="view-link">
+                <i class="fas fa-file-pdf"></i>
+                View
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Data Science Certification</td>
+            <td>Coursera</td>
+            <td>Feb 10, 2024</td>
+            <td>Feb 10, 2025</td>
+            <td>
+              <span class="date-status valid">
+                <i class="fas fa-check-circle"></i>
+                Valid
+              </span>
+            </td>
+            <td>
+              <a href="certificate2.pdf" target="_blank" class="view-link">
+                <i class="fas fa-file-pdf"></i>
+                View
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Web Development Certification</td>
+            <td>Udemy</td>
+            <td>Mar 05, 2024</td>
+            <td>Mar 05, 2025</td>
+            <td>
+              <span class="date-status expiring-soon">
+                <i class="fas fa-clock"></i>
+                Expiring Soon
+              </span>
+            </td>
+            <td>
+              <a href="certificate3.pdf" target="_blank" class="view-link">
+                <i class="fas fa-file-pdf"></i>
+                View
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
